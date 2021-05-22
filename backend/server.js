@@ -1,22 +1,56 @@
 import express from 'express';
-// const express = require('express')
-import data from './data.js'
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import routes from './routes/routes.js';
 
-// const data =require('./data')
-//create an app
-const app=express(); 
 
-app.get('/',(req,res) => {
-    res.send("server is ready");
-});
-app.get('/api/products',(req,res)=>{
-    res.send(data.products);
-    // console.log(data.products);
-});
-// app.listen(5000,()=>{
-//     console.log('serve at http://localhost:5000');
-// });
-const port = process.env.PORT || 5000;
-app.listen(port,()=>{
-    console.log(`server running at http://localhost:${port}`);
-})
+// const env_vars = dotenv.config().error ? console.log(dotenv.config().error.message) : dotenv.config().parsed;
+// const env_vars = dotenv.config().error ? console.log({ error }) : { parsed };
+// console.log("env_vars",env_vars);
+const env_vars = dotenv.config();
+if(env_vars.error) console.log(env_vars.error.message,"\n");
+// process.on(exit(1));
+// dotenv.config().then(() =>{
+//     const env_vars = dotenv.config().parsed;
+// }).catch((err) => console.log(err.message));
+
+
+const app = express();
+// app.close();
+
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: "true"}));
+
+app.use(cors());
+
+app.use('/',routes);
+
+const host = env_vars.parsed.HOST;
+const port = env_vars.parsed.PORT || 6000;
+const dbUrl = env_vars.parsed.DB_CON;
+
+mongoose.connect(
+    dbUrl,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+).then(() => {
+    app.listen(port);
+    console.log(`Connection is established at http://${host}:${port}`);
+}).catch((err) => console.log(err.message));
+
+
+// ).then(() => 
+//     app.listen(port, () => 
+//         console.log(`Connection is established at http://${host}:${port}`)
+// )).catch((err) => console.log(err.message));
+
+// ).then(() => app.listen(port, () => 
+//         console.log(`Connection is established and running on port: ${port}`)
+//     )}).catch((err) => console.log(err.message));
+
+mongoose.set('useFindAndModify',false);
+

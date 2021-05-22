@@ -1,0 +1,17 @@
+
+npm i dotenv = to access an env file for pass keys
+npm install --save mongoose-unique-validator
+data transmission = server -> routes -> { user/product } -> controllers -> { user/product } -> models -> { user/product/reviews }
+
+
+
+
+
+
+
+
+
+
+
+
+
