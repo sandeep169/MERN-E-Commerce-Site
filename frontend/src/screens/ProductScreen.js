@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,9 +14,13 @@ export default function ProductScreen(props) {
     const dispatch = useDispatch();
     const productId= props.match.params.id;
     console.log(props.match.params.id);
+
+
+
     // let { id } = useParams(); // import useParams from react-router-dom
     // a type casting is done to get id as number Number(id);
     // const product = data.products.find((x)=>x._id===Number(id));
+
 
     //now we not gonna show product from static file ,
     // before_reduxUpdate : // const product = data.products.find((x) => x._id === Number(Props.match.params.id));
@@ -111,13 +116,3 @@ export default function ProductScreen(props) {
     )
 }
 
- //before_reduxUpdate : return 
-            //    {/* <div className="row center">
-            //         {products.map((product) => (<>
-            //             <Product key={product._id} product={product}></Product>
-            //             {/* <Rating key={}{}></Rating> }///
-            //         </>
-            //         ))}
-            //     </div>
-            //     //<!--***end of row center**-->
-            //      */}
