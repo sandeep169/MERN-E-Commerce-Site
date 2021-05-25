@@ -1,9 +1,13 @@
 import './App.css';
-import data from './data';
+import {BrowserRouter,Route} from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 
-function App() {
+// import Rating from './components/Rating';
+const  App=()=> {
     return (
-        <>
+        <> 
+        <BrowserRouter >
             <div className="grid-container">
                 <header className="row">
                     <div>
@@ -19,39 +23,15 @@ function App() {
                 {/* <!-- image size 680px by 830 px --> */}
                 {/* <!-- body of card ,, product body  --> */}
                 <main>
-                    <div>
-                        <div className="row center">
-                            {data.products.map((product) => (
-                                <div key={product._id} className="card">
-                                    <a href={`/product/${product._id}`}>
-                                        <img className="medium"
-                                            src={product.image}
-                                            alt={product.name}
-                                        />
-                                    </a>
-                                    <div className="card-body">
-                                        <a href={`/product/${product._id}`}>
-                                            <h2>{product.name}</h2>
-                                        </a>
-                                        <div className="rating">
-                                            <span> <i className="fa fa-star"></i> </span>
-                                            <span> <i className="fa fa-star"></i> </span>
-                                            <span> <i className="fa fa-star"></i> </span>
-                                            <span> <i className="fa fa-star"></i> </span>
-                                            <span> <i className="fa fa-star-o"></i> </span>
-                                        </div>
-                                        <div className="price">{product.price}</div>
-                                    </div>
-                                </div> /* <!--***end of card-body and card div**--> */
-                            ))}
-                        </div>{/* <!--***end of row center**--> */}
-                    </div>
+                <Route path="/product/:id" component={ProductScreen}></Route>
+                <Route path="/" component={HomeScreen} exact></Route>
                 </main>
 
                 <footer className="row center">
-                    All right reserved to Burari Gang
+                    All right reserved to CodeFinder pvt tech.
         </footer>
             </div>
+            </BrowserRouter>
         </>);
 }
 
