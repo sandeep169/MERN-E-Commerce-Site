@@ -1,7 +1,7 @@
 // import data from './data'; no need it now  it was for static data
 import {applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import {productListReducer} from './reducers/productReducers';
+import {productDetailsReducer, productListReducer} from './reducers/productReducers';
 const initialState ={};
 
 //reducer is fn which accept two parameter state and action
@@ -10,8 +10,9 @@ const initialState ={};
 //     return {product : data.products};
 // };
 const reducer = combineReducers({
-    productList:productListReducer,
-})
+    productList : productListReducer,
+    productDetails : productDetailsReducer,
+});
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducer,
