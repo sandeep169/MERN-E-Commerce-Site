@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter,Route} from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import CartScreeen from './screens/CartScreeen';
 
 // import Rating from './components/Rating';
 const  App=()=> {
@@ -23,6 +24,7 @@ const  App=()=> {
                 {/* <!-- image size 680px by 830 px --> */}
                 {/* <!-- body of card ,, product body  --> */}
                 <main>
+                <Route path="/cart/:id?" component={CartScreeen}></Route>
                 <Route path="/product/:id" component={ProductScreen}></Route>
                 <Route path="/" component={HomeScreen} exact></Route>
                 </main>

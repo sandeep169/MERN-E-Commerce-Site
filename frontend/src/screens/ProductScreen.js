@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
@@ -9,9 +9,10 @@ import Rating from "../components/Rating";
 
 
 export default function ProductScreen(props) {
-    
+
     const dispatch = useDispatch();
-    const productId= props.match.params.id;
+    const productId = props.match.params.id;
+    const [qty,setQty]=useState(1);
     console.log(props.match.params.id);
     // let { id } = useParams(); // import useParams from react-router-dom
     // a type casting is done to get id as number Number(id);
@@ -34,9 +35,11 @@ export default function ProductScreen(props) {
     //we need to dispatch detailsProduct in useEffect()
     useEffect(() => {
         dispatch(detailsProduct(productId));
-    },[dispatch, productId]);
+    }, [dispatch, productId]);
 
-    console.log(product);
+    function addToCartHandler(){
+        props.history.push(`/cart/${productId}?qty=${qty}`);
+    }
     return (
         <>
             <div>
@@ -94,9 +97,44 @@ export default function ProductScreen(props) {
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <button className="primary block" >Add to cart </button>
-                                        </li>
+                                        {/* adding a conditional rendering  */}
+                                        {product.countInStock > 0 && (
+                                            <>
+                                                {/* //to choose number of item . select box  */}
+                                                <li>
+                                                    <div className="row">
+                                                        <div>Qty</div>
+                                                        <div>
+                                                            <select value={qty} onChange={e => setQty(e.target.value)}>
+                                                                {
+                                                                    //[...Array(product.countInStock).keys] assuming countInStock is 5
+                                                                    //then this fn will return an array from 0 to 5
+                                                                    //now i am gonna map it each element..
+                                                                    //this will add the total no of product in stock to in array and then
+                                                                    // through option total number of option will display to select the no of  items.
+                                                                    [...Array(product.countInStock).keys()].map(
+                                                                        x => (
+                                                                            <option key={x + 1} value={x + 1}>{x + 1} </option>
+                                                                        )
+                                                                    )}
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+
+                                                </li>
+
+
+                                                {/* // putting add cart button inside this block to not display for non existence product, empty product  */}
+                                                <li>
+                                                    <button 
+                                                    onClick={addToCartHandler}
+                                                    className="primary block" >Add to cart </button>
+                                                </li>
+                                            </>
+                                        )}
+
+
                                     </ul>
                                 </div>
                             </div>
