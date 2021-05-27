@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "try": "nodemon --watch backend --exec node experimental-modules server.js",
-    "start": "nodemon --exec node experimental-modules server.js"
+    "start": "nodemon --exec node experimental-modules server.js",
+    "start1": "nodemon server.js"
   },
   "repository": {
     "type": "git",

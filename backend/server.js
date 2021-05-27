@@ -18,7 +18,6 @@ if(env_vars.error) console.log(env_vars.error.message,"\n");
 
 
 const app = express();
-// app.close();
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: "true"}));
@@ -41,16 +40,6 @@ mongoose.connect(
     app.listen(port);
     console.log(`Connection is established at http://${host}:${port}`);
 }).catch((err) => console.log(err.message));
-
-
-// ).then(() => 
-//     app.listen(port, () => 
-//         console.log(`Connection is established at http://${host}:${port}`)
-// )).catch((err) => console.log(err.message));
-
-// ).then(() => app.listen(port, () => 
-//         console.log(`Connection is established and running on port: ${port}`)
-//     )}).catch((err) => console.log(err.message));
 
 mongoose.set('useFindAndModify',false);
 
