@@ -12,7 +12,7 @@ export default function ProductScreen(props) {
 
     const dispatch = useDispatch();
     const productId = props.match.params.id;
-    const [qty,setQty]=useState(1);
+    const [qty, setQty] = useState(1);
     console.log(props.match.params.id);
     // let { id } = useParams(); // import useParams from react-router-dom
     // a type casting is done to get id as number Number(id);
@@ -37,7 +37,7 @@ export default function ProductScreen(props) {
         dispatch(detailsProduct(productId));
     }, [dispatch, productId]);
 
-    function addToCartHandler(){
+    function addToCartHandler() {
         props.history.push(`/cart/${productId}?qty=${qty}`);
     }
     return (
@@ -69,7 +69,7 @@ export default function ProductScreen(props) {
                                             numReviews={product.numReviews}>
                                         </Rating>
                                     </li>
-                                    <li>Price : ${product.price}</li>
+                                    <li>Price : ₹{product.price}</li>
                                     <li>
                                         Description :
             <p>{product.description} </p>
@@ -82,7 +82,7 @@ export default function ProductScreen(props) {
                                         <li>
                                             <div className="row">
                                                 <div>Price</div>
-                                                <div className="price">${product.price}</div>
+                                                <div className="price">₹{product.price}</div>
                                             </div>
 
                                         </li>
@@ -127,9 +127,9 @@ export default function ProductScreen(props) {
 
                                                 {/* // putting add cart button inside this block to not display for non existence product, empty product  */}
                                                 <li>
-                                                    <button 
-                                                    onClick={addToCartHandler}
-                                                    className="primary block" >Add to cart </button>
+                                                    <button
+                                                        onClick={addToCartHandler}
+                                                        className="primary block" >Add to cart </button>
                                                 </li>
                                             </>
                                         )}

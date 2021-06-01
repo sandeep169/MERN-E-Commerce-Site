@@ -1,11 +1,16 @@
 import './App.css';
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Link,Route} from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
-import CartScreeen from './screens/CartScreeen';
+import CartScreen from './screens/CartScreen';
+import { useSelector } from 'react-redux';
 
 // import Rating from './components/Rating';
+
 const  App=()=> {
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
+
     return (
         <> 
         <BrowserRouter >
@@ -13,24 +18,31 @@ const  App=()=> {
                 <header className="row">
                     <div>
                         {/* <!-- logo --> */}
-                        <a className="brand" href="/">Klieder House</a>
+                        <Link className="brand" to="/">Klieder House</Link>
                     </div>
                     <div>
                         {/* <!-- links --> */}
-                        <a href="/">Cart</a>
-                        <a href="/">Sign Up</a>
+                        <Link to="/cart">Cart
+                        {cartItems.length > 0 && (
+                            <span className="badge">{cartItems.length}</span>
+                        )}
+                        </Link>
+                        <Link to="/signin">Sign Up</Link>
                     </div>
                 </header>
                 {/* <!-- image size 680px by 830 px --> */}
                 {/* <!-- body of card ,, product body  --> */}
                 <main>
-                <Route path="/cart/:id?" component={CartScreeen}></Route>
+                <Route path="/cart/:id?" component={CartScreen}></Route>
+                
                 <Route path="/product/:id" component={ProductScreen}></Route>
                 <Route path="/" component={HomeScreen} exact></Route>
+                
+                
                 </main>
 
                 <footer className="row center">
-                    All right reserved to CodeFinder pvt tech.
+                    All right reserved to Klieder House.
         </footer>
             </div>
             </BrowserRouter>
