@@ -27,7 +27,9 @@ body{
 }
 header{
   grid-area:header;
-  background-color: #203040;
+  /* background-color: #203040; */
+  background-color: white;
+  /* color: black; */
 }
 main{
   grid-area:main;
@@ -97,11 +99,14 @@ button.block{
 
 /* Hearder */
 header a{
-color : #fff;
+/* color : #fff; */
+color : black;
+
 padding : 1rem;
 }
 a.brand{
-  color : #ffffff;
+  /* color : #ffffff; */
+color: black;
   font-size:3rem;
   font-weight: bold;
 }
@@ -119,6 +124,7 @@ a.brand{
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  color: black
 }
 .row.center{
   justify-content: center;
