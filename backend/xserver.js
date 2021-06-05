@@ -1,6 +1,6 @@
 import express from 'express';
 // const express = require('express')
-import data from './data.js'
+import data from './xdata.js'
 
 // const data =require('./data')
 //create an app
