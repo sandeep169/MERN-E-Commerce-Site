@@ -8,7 +8,7 @@ import
     } from "../constants/productConstants";
 
 export const productListReducer = (
-    state = { products: []},
+    state = { products: [] },
     action
     )=>{
     switch(action.type){

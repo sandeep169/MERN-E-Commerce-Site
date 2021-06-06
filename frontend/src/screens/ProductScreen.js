@@ -12,7 +12,7 @@ export default function ProductScreen(props) {
 
     const dispatch = useDispatch();
     const productId = props.match.params.id;
-    const [qty, setQty] = useState();
+    const [qty, setQty] = useState(1);
     console.log(props.match.params.id);
     // let { id } = useParams(); // import useParams from react-router-dom
     // a type casting is done to get id as number Number(id);
@@ -72,7 +72,7 @@ export default function ProductScreen(props) {
                                     <li>Price : ₹{product.price}</li>
                                     <li>
                                         Description :
-            <p>{product.description} </p>
+                                         <p>{product.description} </p>
                                     </li>
                                 </ul>
                             </div>

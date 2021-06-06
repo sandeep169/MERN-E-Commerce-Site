@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { Contact } from './Contact';
 import { Footer } from './Footer';
 import Register from './Register';
+import { FetchApi} from './FetchApi';
 
 
 // import Rating from './components/Rating';
@@ -22,7 +23,7 @@ const  App=()=> {
                 <header className="row">
                     <div>
                         {/* <!-- logo --> */}
-                        <Link className="brand" to="/">Klieder House</Link>
+                        <Link className="brand" to="/">AshurLok</Link>
                     </div>
                     <div>
                     <Link to="/products">products</Link>
@@ -33,6 +34,7 @@ const  App=()=> {
                             <span className="badge">{cartItems.length}</span>
                         )}
                         </Link>
+                        <Link to="/FetchApi">Fetch Api</Link>
                         <Link to="/contact">Contact</Link>
                         <Link to="/Register">Sign Up</Link>
                     </div>
@@ -45,6 +47,7 @@ const  App=()=> {
                 <Route path="/products" component={HomeScreen} exact></Route>
                 <Route path="/contact" component={Contact}></Route>
                 <Route path="/Register" component={Register}></Route>
+                <Route path="/FetchApi" component={FetchApi}></Route>
 
                 </main>
                 <footer className="row center">

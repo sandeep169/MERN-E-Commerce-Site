@@ -15,7 +15,18 @@ export default function HomeScreen() {
     // const [products, setProducts] = useState([]);
     // const [loading, setLoading] = useState(false);
     // const [error, setError] = useState(false)
-    const productList = useSelector(state=>state.productList);
+    
+    //useSelector() :const result: any = useSelector(selector: Function, equalityFn?: Function)
+    //Allows you to extract data from the Redux store state,using a selector function.
+    //useSelector() will also subscribe to the Redux store,
+    // and run your selector whenever an action is dispatched.
+
+    const productList = useSelector((state)=>state.productList);
+    //When an action is dispatched, useSelector() will do a reference 
+    //comparison of the previous selector result value and the current result
+    // value. If they are different, the component will be forced to re-render.
+    //If they are the same, the component will not re-render.
+
     const {loading,error,products} = productList;
 
     //three value from PL .. array destructuring.. unpacking value from array
@@ -48,13 +59,16 @@ export default function HomeScreen() {
                 <LoadingBox></LoadingBox>
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
-            ) : (
+            ) :
+            (
                 <div className="row center">
-                    {products.map((product) => (<>
+                    {products.map((product) =>
+                    (<>
                         <Product key={product._id} product={product}></Product>
-                        {/* <Rating key={}{}></Rating> */}
+                    
                     </>
-                    ))}
+                    )
+                    )}
                 </div>
                 //{/* <!--***end of row center**--> */}
             )}

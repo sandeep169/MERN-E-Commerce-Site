@@ -42,11 +42,11 @@ export function Footer(){
                         <div className="container">
                             <div className="footers14-bottom text-center">
                                 <div className="social">
-                                    <a href="#facebook" className="facebook"><span className="fa fa-facebook" aria-hidden="true"></span></a>
-                                    <a href="#google" className="google"><span className="fa fa-google-plus" aria-hidden="true"></span></a>
-                                    <a href="#twitter" className="twitter"><span className="fa fa-twitter" aria-hidden="true"></span></a>
-                                    <a href="#instagram" className="instagram"><span className="fa fa-instagram" aria-hidden="true"></span></a>
-                                    <a href="#youtube" className="youtube"><span className="fa fa-youtube" aria-hidden="true"></span></a>
+                                    <a href="#facebook" className="facebook">facebook<span className="fa fa-facebook" aria-hidden="true"></span></a>
+                                    <a href="#google" className="google">google<span className="fa fa-google-plus" aria-hidden="true"></span></a>
+                                    <a href="#twitter" className="twitter">twitter<span className="fa fa-twitter" aria-hidden="true"></span></a>
+                                    <a href="#instagram" className="instagram">instagram<span className="fa fa-instagram" aria-hidden="true"></span></a>
+                                    <a href="#youtube" className="youtube"> youtube <span className="fa fa-youtube" aria-hidden="true"></span></a>
                                 </div>
                                 <div className="copyright mt-1">
                                     <p>&copy; 2021 Kleider House. All Rights Reserved</p>
@@ -56,9 +56,9 @@ export function Footer(){
                     </div>
 
                     {/* <!-- move top --> */}
-                    <button onclick="topFunction()" id="movetop" title="Go to top">
+                    {/* <button onclick="topFunction()" id="movetop" title="Go to top">
                         <span className="fa fa-angle-up" aria-hidden="true"></span>
-                    </button>
+                    </button> */}
 </footer>
         </>
     )
