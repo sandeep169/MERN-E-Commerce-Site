@@ -4,7 +4,7 @@ export function FetchApi (){
 
 const [data, setData]=useState([]);
 
-    const apiGet = () => {
+    const apiGet = async () => {
         console.log("inside get api");
     // fetch("https://jsonplaceholder.typicode.com/posts/1")
     fetch("http://localhost:5000/api/products")
@@ -15,12 +15,14 @@ const [data, setData]=useState([]);
         setData(json);
     })
     };
+
     useEffect(()=>
     {
         //calling our method apiget() here so that whenever page reloaded data will fetch
         apiGet();
 
     },[])
+
     return(
         <div>
            <h1>Arihant Backend data api for products</h1>
@@ -28,8 +30,17 @@ const [data, setData]=useState([]);
             <button onClick={apiGet}>Click to ProductApi</button>
             <br/>
             <br></br>
-            <pre>{JSON.stringify(data,null,3)}</pre>
-
+            {/* <pre>{JSON.stringify(data,null,3)}</pre> */}
+          <div>
+            <ul>
+            {/* {JSON.stringify(data,null,3)} */}
+            {data?.map((item) =>
+            <li>
+                {item.title}
+            </li>
+            )}
+            </ul>
+</div>
 
         </div>
     );
