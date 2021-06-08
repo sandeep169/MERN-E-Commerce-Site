@@ -1,5 +1,6 @@
 export default function Rating(props) {
-    const {rating,numReviews}=props;
+    // const {rating,numReviews}=props;
+    const {rating}=props;
 
     return (<>
    
@@ -38,7 +39,7 @@ export default function Rating(props) {
             ?"fa fa-star-half-o"  //{/* again one more condition inside turnery operator : if true den =>half star */}
             :"fa fa-star-o"}  //{/*empty star */}
             ></i> </span> 
-            <span>{numReviews+' Review' }</span>
+            {/* <span>{numReviews+' Review' }</span> */}
         </div>
        
         </>

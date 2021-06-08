@@ -44,7 +44,7 @@ const  App=()=> {
                 <main>
                 <Route path="/cart/:id?" component={CartScreen}></Route>
                 <Route path="/product/:id" component={ProductScreen}></Route>
-                <Route path="/" component={HomeScreen}></Route>
+                <Route path="/products" component={HomeScreen}></Route>
                 <Route path="/contact" component={Contact}></Route>
                 <Route path="/Register" component={Register}></Route>
                 <Route path="/FetchApi" component={FetchApi}></Route>

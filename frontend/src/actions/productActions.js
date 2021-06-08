@@ -2,7 +2,7 @@ import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS,
 import Axios from 'axios';
 // import axios from "axios";
 export const listProducts = () => async (dispatch) => {
-    console.log("LIST PRODUCTS");
+    // console.log("LIST PRODUCTS");
     dispatch({
         type: PRODUCT_LIST_REQUEST
     });
@@ -12,7 +12,7 @@ export const listProducts = () => async (dispatch) => {
         // const {data} = await Axios.get('https://jsonplaceholder.typicode.com/posts/1');
         // const data =fetch("http://localhost:5000/api/products")
         // console.log("after try");
-        // console.log(data);
+        console.log(data);
         
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
         //payload should contain from backend

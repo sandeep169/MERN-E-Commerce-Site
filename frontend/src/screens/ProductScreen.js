@@ -52,27 +52,28 @@ export default function ProductScreen(props) {
                         <Link to="/">Back to Result</Link>
                         <div className="row top">
                             <div className="col-2">
-                                <img className="large"
-                                    src={`../${product.image}`}
+                                {/* <img className="large"
+                                    src={`../${product.product_images}`}
                                     alt={product.name}
-                                />
+                                /> */}
                                 {/* as path was looking in src folder but image is in one step back in public/image  so manually path set {../$} */}
                             </div>
                             <div className="col-1">
                                 <ul>
                                     <li>
-                                        <h1>{product.name}</h1>
+                                        <h1>{product.brand}</h1>
                                     </li>
                                     <li key={product._id}>
                                         <Rating key={product._id}
                                             rating={product.rating}
-                                            numReviews={product.numReviews}>
+                                            // numReviews={product.numReviews}
+                                            >
                                         </Rating>
                                     </li>
                                     <li>Price : ₹{product.price}</li>
                                     <li>
                                         Description :
-                                         <p>{product.description} </p>
+                                         <p>{product.category} </p>
                                     </li>
                                 </ul>
                             </div>
@@ -90,7 +91,7 @@ export default function ProductScreen(props) {
                                             <div className="row">
                                                 <div>Status :</div>
                                                 <div>
-                                                    {product.countInStock > 0 ?
+                                                    {product.stock > 0 ?
                                                         (<span className="success">In Stock</span>) :
                                                         (<span className="danger">UnAvailable </span>)}
 
@@ -98,7 +99,7 @@ export default function ProductScreen(props) {
                                             </div>
                                         </li>
                                         {/* adding a conditional rendering  */}
-                                        {product.countInStock > 0 && (
+                                        {product.stock > 0 && (
                                             <>
                                                 {/* //to choose number of item . select box  */}
                                                 <li>
@@ -112,7 +113,7 @@ export default function ProductScreen(props) {
                                                                     //now i am gonna map it each element..
                                                                     //this will add the total no of product in stock to in array and then
                                                                     // through option total number of option will display to select the no of  items.
-                                                                    [...Array(product.countInStock).keys()].map(
+                                                                    [...Array(product.stock).keys()].map(
                                                                         x => (
                                                                             <option key={x + 1} value={x + 1}>{x + 1} </option>
                                                                         )
