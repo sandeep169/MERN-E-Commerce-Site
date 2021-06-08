@@ -10,7 +10,7 @@ export const getProductsController = tryCatchUtility(async (req, res) => {
         // console.log(product[0]._id);
         if(!product.length) throw new generateErrUtility('no product found',404);
         // res.setHeader('Content-Type', 'application/*');
-        return res.status(302).json(product);
+        return res.status(200).json(product);
 });
 export const addProductController = async (req, res) => {
     // res.send(req.body);

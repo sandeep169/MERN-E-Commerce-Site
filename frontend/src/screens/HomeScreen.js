@@ -30,6 +30,7 @@ export default function HomeScreen() {
     const {loading,error,products} = productList;
 
     //three value from PL .. array destructuring.. unpacking value from array
+    //it will initiate the action 
     useEffect(() => {
         //dispatch an action which we gonna listProducts,its a function
         dispatch(listProducts());
@@ -52,7 +53,6 @@ export default function HomeScreen() {
     }, [dispatch]);
 
 
-
     return (
         <div>
             {loading ? (
@@ -62,10 +62,10 @@ export default function HomeScreen() {
             ) :
             (
                 <div className="row center">
-                    {products.map((product) =>
+                    {products?.map((product) =>
                     (<>
                         <Product key={product._id} product={product}></Product>
-                    
+        
                     </>
                     )
                     )}

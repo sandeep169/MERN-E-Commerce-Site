@@ -10,7 +10,7 @@ export const getUsersController = tryCatchUtility(async (req, res, next) => {
         const users = await userModel.find();
         // console.log(users);
         if(!users.length) throw new generateErrUtility('no user found',404);
-        return res.status(302).json(users);
+        return res.status(200).json(users);
     // } catch(err) {
         // res.status(404).json({message: err.message});
     // }
