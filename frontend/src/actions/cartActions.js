@@ -1,5 +1,6 @@
 import Axios from "axios";
-import { CART_ADD_ITEM } from "../constants/cartConstant";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstant";
+
 
 //when we are defining action this async opeartion accept dispatch
 export const addToCart = (productId, qty) => async(dispatch,getState)=> {
@@ -23,3 +24,10 @@ export const addToCart = (productId, qty) => async(dispatch,getState)=> {
 //after adding product to cart its going to save in our 
 //local storage  and by refreshing the page it going to
 //   persistence in our computer
+
+export const removeFromCart = (productId) => async (dispatch,getState)=>{
+
+    dispatch({ type : CART_REMOVE_ITEM, payload : productId});
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+
+}

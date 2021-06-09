@@ -8,8 +8,6 @@ import { Contact } from './Contact';
 import { Footer } from './Footer';
 import Register from './Register';
 import { FetchApi} from './FetchApi';
-
-
 // import Rating from './components/Rating';
 
 const  App=()=> {

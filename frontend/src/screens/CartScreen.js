@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import MessageBox from '../components/MessageBox';
 
 export default function CartScreen(props) {
@@ -9,6 +9,8 @@ export default function CartScreen(props) {
   const qty = props.location.search
     ? Number(props.location.search.split('=')[1])
     : 1;
+
+  //array destructure of cart state
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
@@ -19,7 +21,8 @@ export default function CartScreen(props) {
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    // delete action
+    //delete item from cart function
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
@@ -37,17 +40,23 @@ export default function CartScreen(props) {
           <ul>
             {cartItems.map((item) => (
               <li key={item.product}>
+                
                 <div className="row">
                   <div>
                     <img
+                      // src={`../${item.image}`}
                       src={item.image}
                       alt={item.name}
                       className="small"
                     ></img>
+                  
                   </div>
+                  {/* this colum show product name */}
                   <div className="min-30">
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    {/* this is third colum .. it should show select box to change the qty of item in cart screen*/}
                   </div>
+                  
                   <div>
                     <select
                       value={item.qty}
@@ -57,18 +66,29 @@ export default function CartScreen(props) {
                         )
                       }
                     >
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
+
+                      {
+                        //[...Array(product.countInStock).keys] assuming countInStock is 5
+                        //then this fn will return an array from 0 to 5
+                        //now i am gonna map it each element..
+                        //this will add the total no of product in stock to in array and then
+                        // through option total number of option will display to select the no of  items.
+                        [...Array(item.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
                     </select>
+                  
                   </div>
+                   {/* forth colum showing the price  */}
                   <div>₹{item.price}</div>
+                  
+                  {/* last item delete column 5th */}
                   <div>
                     <button
                       type="button"
-                      onClick={() => removeFromCartHandler(item.product)}
+                      onClick={() =>removeFromCartHandler(item.product)}
                     >
                       Delete
                     </button>
@@ -79,12 +99,6 @@ export default function CartScreen(props) {
           </ul>
         )}
       </div>
-    {/* { reduce function is used to calculate the total items and sum of total item price
-    reduce () method reduce the array to single value. it execute provided fn for each value of the array(from left to right).
-      the return value of the function is stored in accumulator(result/total)
-      it does not change the array value.
-    } */}
-
       <div className="col-1">
         <div className="card card-body">
           <ul>
@@ -94,6 +108,7 @@ export default function CartScreen(props) {
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </h2>
             </li>
+            
             <li>
               <button
                 type="button"
@@ -104,6 +119,7 @@ export default function CartScreen(props) {
                 Proceed to Checkout
               </button>
             </li>
+            
           </ul>
         </div>
       </div>
