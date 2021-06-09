@@ -5,21 +5,27 @@ import React, { useEffect, useState } from 'react';
 
 
 export function FetchApi() {
-    const [{data}, setData] = useState([]);
+    const [data, setData] = useState([]);
   //as data is coming as an object in array so data is defined as curly braces
     const apiGet = async () => {
 
         // console.log("inside get api");
         //using fetch api of JavaScript 
         // fetch("https://jsonplaceholder.typicode.com/posts/1")
-        //    fetch("http://localhost:5000/api/products")
+        //    fetch("/api/products")
         //     .then((response) => response.json())
         //     .then((json)  =>
         //     {
         //         console.log(json)
         //         setData(json);
         //     })
-        const data = await Axios.get("/api/products")
+        await Axios.get("/api/products/")
+        .then(({
+            data
+        },response)=>  {console.log(data)
+            console.log(response);
+        setData(data);
+    } )
         //    not running //reason is to be find yet
         // .then(function (response) {
             //     console.log("running ");
@@ -50,7 +56,7 @@ export function FetchApi() {
                 // setData(data);
             // });
         // console.log(data);
-        setData(data);
+        // setData(data);
         // // console.log(data);
 
 

@@ -79,6 +79,12 @@ export default function CartScreen(props) {
           </ul>
         )}
       </div>
+    {/* { reduce function is used to calculate the total items and sum of total item price
+    reduce () method reduce the array to single value. it execute provided fn for each value of the array(from left to right).
+      the return value of the function is stored in accumulator(result/total)
+      it does not change the array value.
+    } */}
+
       <div className="col-1">
         <div className="card card-body">
           <ul>

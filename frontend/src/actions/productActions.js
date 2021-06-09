@@ -8,8 +8,8 @@ export const listProducts = () => async (dispatch) => {
     });
     try {
         // console.log("inside try");
-        const {data} = await Axios.get("/api/products");
-        // const {data} = await Axios.get('https://jsonplaceholder.typicode.com/posts/1');
+        const {data} = await Axios.get("/api/products/");
+        // const {data} = await Axios.get('https://jsonplaceholder.typicode.com/posts');
         // const data =fetch("http://localhost:5000/api/products")
         // console.log("after try");
         console.log(data);
