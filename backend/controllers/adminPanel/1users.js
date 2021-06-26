@@ -44,4 +44,3 @@ export const deleteUsersController = async (req, res) => {
         res.status(501).json({message: err.message});
     }
 };
-

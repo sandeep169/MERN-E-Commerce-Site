@@ -1,6 +1,9 @@
-import productModel from '../../models/Product.js';     // for product rating
+import userModel from '../../models/user.js';
+import productModel from '../../models/product.js';     // for product rating
 import reviewModel from '../../models/review.js';       // for user reviews & rating
 
+import { tryCatchUtility } from '../../utils/errHandling/tryCatch.js';
+import { generateErrUtility } from '../../utils/errHandling/generateErr.js';
 
 // from product model
 export const getProductRatingController = async (req, res) => {};

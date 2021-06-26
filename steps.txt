@@ -2,16 +2,17 @@
 npm i dotenv = to access an env file for pass keys
 npm install --save mongoose-unique-validator
 data transmission = server -> routes -> { user/product } -> controllers -> { user/product } -> models -> { user/product/reviews }
+npm install bcryptjs = hash user pass
+npm install express-validator
+npm i winston = pkg for storing err logs
+npm i winston-mongodb = pkg for storing err logs in mongodb
+npm install jsonwebtoken = for generating token for authenticated user
+npm install --save multer = for uploading images
 
 
 
 
 
-
-
-
-
-
-
-
+raw err msg with status code -> generateErrUtility -> printErrUtility -> client, errLogsUtility -> console, file, db
+user throwned err is sent to created child class 'generateErrUtility' of express 'Error' class which encapsulate err msg with status code and sends it to 'printErrUtility' which then sends that err to the client in response() and also prints the err
 

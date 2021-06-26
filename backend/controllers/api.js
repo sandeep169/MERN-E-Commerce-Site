@@ -1,55 +1,79 @@
-import { verifyLoggerController, getAdminHomeController, getUserHomeController } from './login.js';
+import { verifyLoggerController } from './login.js';
 
-// admin fns
-import { getAdminProfileController, updateAdminProfileController, deleteAdminProfileController } from './admin/profile.js';
-import { getUsersController, addUserController, updateUserController, deleteUsersController } from './admin/users.js';
-import { getProductsController, addProductController, updateProductController, deleteProductsController } from './admin/products.js';
+import { getAdminHomeController, getUserHomeController, getGuestHomeController } from './home.js';
+
+// admin-panel fns
+import { getAdminPanelController  } from './adminPanel/index.js';
+import { getUsersController, addUserController, updateUserController, deleteUsersController } from './adminPanel/users.js';
+import { getProductsController, addProductController, updateProductController, deleteProductsController } from './adminPanel/products.js';
 // import { monthlySales, yearlySales, profit, loss, revenue, etc... } from './companyInsights.js'
 
-// user fns
-import { getUserProfileController, updateUserProfileController, deleteUserProfileController } from './user/profile.js';
-import { getCartProductsController, editCartProductController, deleteCartProductsController } from './user/cart.js';
-import { getProductReviewsController, addReviewToProductController, editUserReviewController, deleteUserReviewController } from './user/reviews.js';
-import { getProductRatingController, addRatingToProductController, editUserRatingController, deleteUserRatingController } from './user/ratings.js';
+// profile fns - admin/user
+import { getProfileController, updateProfileController, deleteProfileController } from './profile/index.js';
 
-// remaining - getAdminPanel, getOrders, getReturns, getProduct, addProductToCart
+// common fns - admin/user
+import { getCartProductsController, editCartProductController, deleteCartProductController } from './common/cart.js';
+import { getProductReviewsController, addReviewToProductController, editUserReviewController, deleteUserReviewController } from './common/reviews.js';
+import { getProductRatingController, addRatingToProductController, editUserRatingController, deleteUserRatingController } from './common/ratings.js';
+import { getProductController, addProductToCartController, getOrdersController, getReturnsController } from './common/other.js';
+
 
 // login
 export const verifyLoggerApi = verifyLoggerController;
+
+
+// home - admin/user
+// export const validateUserApi = validateUserController;
 export const getAdminHomeApi = getAdminHomeController;
 export const getUserHomeApi = getUserHomeController;
+export const getGuestHomeApi = getGuestHomeController;
 
-// admin
-export const getAdminProfileApi = getAdminProfileController;
-export const updateAdminProfileApi = updateAdminProfileController;
-export const deleteAdminProfileApi = deleteAdminProfileController;
 
+
+// admin-panel
+export const getAdminPanelApi = getAdminPanelController;
+
+// opts on users
 export const getUsersApi = getUsersController;
 export const addUserApi = addUserController;
 export const updateUserApi = updateUserController;
 export const deleteUsersApi = deleteUsersController;
 
+// opts on products
 export const getProductsApi = getProductsController;
 export const addProductApi = addProductController;
 export const updateProductApi = updateProductController;
 export const deleteProductsApi = deleteProductsController;
 
-// user
-export const getUserProfileApi = getUserProfileController;
-export const updateUserProfileApi = updateUserProfileController;
-export const deleteUserProfileApi = deleteUserProfileController;
 
+
+// profile - admin/user
+export const getProfileApi = getProfileController;
+export const updateProfileApi = updateProfileController;
+export const deleteProfileApi = deleteProfileController;
+
+
+
+// common - admin/user
+// cart
 export const getCartProductsApi = getCartProductsController;
 export const editCartProductApi = editCartProductController;
-export const deleteCartProductsApi = deleteCartProductsController;
+export const deleteCartProductApi = deleteCartProductController;
 
+// reviews
 export const getProductReviewsApi = getProductReviewsController;
 export const addReviewToProductApi = addReviewToProductController;
 export const editUserReviewApi = editUserReviewController;
 export const deleteUserReviewApi = deleteUserReviewController;
 
+// ratings
 export const getProductRatingApi = getProductRatingController;
 export const addRatingToProductApi = addRatingToProductController;
 export const editUserRatingApi = editUserRatingController;
 export const deleteUserRatingApi = deleteUserRatingController;
 
+// other
+export const getProductApi = getProductController;
+export const addProductToCartApi = addProductToCartController;
+export const getOrdersApi = getOrdersController;
+export const getReturnsApi = getReturnsController;

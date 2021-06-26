@@ -10,7 +10,7 @@ const cartSchema = mongoose.Schema({
     color: { type: String, required: true },
     // product_gender: { type: String, required: true },
     // category: { type: String, required: true },
-    // price: { type: Number, required: true },
+    // totalPrice: { type: Number, required: true },
 }, { timestamps: true } );
 
 // productSchema.plugin(uniqueValidator);

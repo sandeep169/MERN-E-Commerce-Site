@@ -23,5 +23,11 @@ yarn-debug.log*
 yarn-error.log*
 
 
+.vscode
 .history
 .env
+*.png
+*.jpg
+error_logs
+test.rest
+updates.txt

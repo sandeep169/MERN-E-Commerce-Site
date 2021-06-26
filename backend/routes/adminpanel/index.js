@@ -1,14 +1,17 @@
 import express from 'express';
-import { getAdminProfileApi, updateAdminProfileApi, deleteAdminProfileApi } from '../../controllers/api.js';
+
+import { getAdminPanelApi } from '../../controllers/api.js';
 import usersRoute from './users.js';
 import productsRoute from './products.js';
 
 const router = express.Router();
 
-// My profile
-router.get('/',getAdminProfileApi);
-router.put('/:aid',updateAdminProfileApi);
-router.delete('/:aid',deleteAdminProfileApi);
+// admin-panel
+router.get('/',getAdminPanelApi);
+
+// Website home for 'admin'
+// router.get(['/', '/home'],getAdminHomeApi);
+// router.get('/',getAdminHomeApi);
 
 // Operations on all users
 router.use('/users',usersRoute);
