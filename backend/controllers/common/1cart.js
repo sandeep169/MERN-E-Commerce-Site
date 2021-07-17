@@ -5,63 +5,66 @@ import { tryCatchUtility } from '../../utils/errHandling/tryCatch.js';
 import { generateErrUtility } from '../../utils/errHandling/generateErr.js';
 
 export const getCartProductsController = tryCatchUtility(async (req, res) => {
+    // res.status(200).send(req.user);
+    /*const response = await cartModel.find({ user_id: req.user.userid });
+    if(!response) return res.status(200).send('Empty Cart!');
+    res.status(200).json({ cartProducts: response });*/
+
     const cart_ids = await cartModel.find({ user_id: req.user.userid }, { product_id: 1 }).lean();
+    // const cart_ids = await cartModel.find({ user_id: req.user.userid }).lean();
     if(!cart_ids.length) return res.send('Empty Cart!');
-    // console.log('cart_ids',cart_ids);
 
-    let cartProducts = [];
-    let idCount = cart_ids.length;
+    const cartProducts = [];
+    let nullCount = 0;
+    // const response = [];
     for(let id of cart_ids) {
-        // const response = await productCustomizationModel.find({ id: id._id }).lean();
-        const response = await productCustomizationModel.aggregate(
-        [
-            { $match: { id: String(id._id) } },
-            { $addFields: { product_id: id.product_id } },
-            // { $project: { _id: 1, quantity: 1, size: 1, color: 1, id: 1, createdAt: 1, updatedAt: 1, product_id: 1 } }
-        ]
-        /*[
-            {
-              '$match': {
-                'id': cart_ids[0]._id
-              }
-            }, {
-              '$addFields': {
-                'product_id': cart_ids[0].product_id
-              }
-            }
-          ]*/
-        );
-        // console.log('\nid',id,'\nresponse',response);
-        // console.log(typeof id,id._id,typeof id._id,id.product_id,typeof id.product_id);
-        // console.log(String(id._id),typeof String(id._id));
+        // response.push(await productCustomizationModel.findById(id._id));
+        // const response = await productCustomizationModel.findOne({ id: id._id }, { _id: 0 });
+        const response = await productCustomizationModel.find({ id: id._id }).lean();
+        // console.log('id',id,'\nresponse',response);
 
-        // if(response.length) cartProducts.push(...response);  // its outdated and has overflow problem with large array of around 100,000 items
-        if(response.length) cartProducts = cartProducts.concat(response);
-        else idCount--;
-        /*response.forEach(customization => {
+        if(response.length)
+            // if(Array.isArray(response)) response.forEach(x => {
+            response.forEach(customization => {
                 // console.log('array\n',response);
                 customization.product_id = id.product_id;
                 // console.log('x',x);
                 cartProducts.push(customization);
+                // cartProducts.push(Object.assign(x,id));
+                // cartProducts[cartProducts.length-1].product_id = id.product_id;
                 // console.log(cartProducts[cartProducts.length-1].product_id);
                 // console.log(cartProducts[cartProducts.length-1]);
                 // console.log('x',x,'\ncart',cartProducts,'\nid',id);
-            }); // else {
+            }); /*else {
                 // console.log('non array');
+                response.product_id = id.product_id;
+                cartProducts.push(response);
+                // cartProducts[cartProducts.length-1].product_id = id.product_id;
+                // cartProducts.push(Object.assign(id,response));
                 // console.log('response',response,'\ncart',cartProducts,'\nid',id);
-        else nullCount++;*/
+            }*/
+        else nullCount++;
         // console.log('id',id,'\nresponse',response);
     }
     // console.log(cartProducts[0].hasOwnProperty('product_id'));
     // console.log(cartProducts[cartProducts.length-1].product_id);
     // console.log('cart',cartProducts);
-        // console.log('new id',id);
+        /*// if(x) response.push(x);
+        // if(response) id = Object.assign(id,response);
+        // else nullCount++;
+        // response ? id = Object.assign(id,response) : nullCount++;
+        // response ? response.product_id = id.product_id : nullCount++;
+        if(response) {
+            // delete id._id;
+            id = Object.assign(id,response);
+        } else nullCount++;
+        console.log('new id',id);
+    }*/
 
     // console.log('null',nullCount,'\ncart_ids.length',cart_ids.length);
-    // if(nullCount === cart_ids.length) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
-    if(!idCount) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
+    if(nullCount === cart_ids.length) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
     res.status(200).json({ cartProducts: cartProducts });
-    // res.sendStatus(200);
+    // res.status(200);
 });
 
 export const addProductToCartController = tryCatchUtility(async (req, res) => {
@@ -105,8 +108,8 @@ export const addProductToCartController = tryCatchUtility(async (req, res) => {
         // adding product customization to product customization model
         // delete body.product_id;
         body.id = response._id;
-        response = null;
-        response = await productCustomizationModel.create(body); // || null;
+        // response = null;
+        response = await productCustomizationModel.create(body) || null;
         if(!response) throw new generateErrUtility('Unable to add this product to cart!\nPlease try again later...',500);
     // }
 

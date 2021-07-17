@@ -4,7 +4,9 @@ import mongoose from 'mongoose';
 const reviewSchema = mongoose.Schema({
     user_id: { type: String, required: true },              // pk
     product_id: { type: String, required: true },           // pk
-    comment: { type: String, required: true, maxLength: 250 },
+
+    title: { type: String, maxLength: 50 },
+    comment: { type: String, maxLength: 250 },
     // review_images: [{
         // data: Buffer,
         // contentType: String

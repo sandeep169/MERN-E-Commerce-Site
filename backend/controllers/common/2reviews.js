@@ -20,15 +20,14 @@ export const getProductReviewsController = tryCatchUtility(async (req, res) => {
 });
 
 export const addReviewToProductController = tryCatchUtility(async (req, res) => {
-    const newReview = JSON.parse(JSON.stringify(req.body));   // deep copying - it doesn't affect original object
-    // const { body:newReview, files, user, params } = req;    // shell copying - affect original object
-    const { user, params, files } = req;    // shell copying - affect original object
+    // const review = JSON.parse(JSON.stringify(req.body));   // deep copying - it doesn't affect original object
+    const { body:newReview, files, user, params } = req;
 
     // chking if user has already given rating to this product bcz rating can only be given once per user
     if(newReview.rating !== undefined) {
         // const { comment:existingRating } = await reviewModel.find({ user_id: user.userid, product_id: params.pid }).lean();
         const existingReviews = await reviewModel.find({ user_id: user.userid, product_id: params.pid }, { rating: 1, _id: 0 }).lean();
-        // if(!existingReviews) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
+        if(!existingReviews) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
         // console.log(existingReviews, typeof existingReviews); //, typeof existingRating[0], existingRating[0].rating);
         if(existingReviews.length) {
             /*const ratingExist = existingReviews.forEach(review => {
@@ -83,8 +82,8 @@ export const editUserReviewController = tryCatchUtility(async (req, res) => {
 
     // chking if user has already given rating to this product bcz rating can only be given once per user
     if(updates.rating !== undefined) {
-        const existingReviews = await reviewModel.find({ user_id: user.userid, product_id: updates.product_id, _id: { $nin: params.rid } }, { rating: 1, _id: 0 }).lean();
-        // if(!existingReviews) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
+        const existingReviews = await reviewModel.find({ user_id: user.userid, product_id: params.pid, _id: { $nin: params.rid } }, { rating: 1, _id: 0 }).lean();
+        if(!existingReviews) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);
         if(existingReviews.length) {
             /*existingReviews.forEach(review => {
                 if(review.rating !== undefined) return res.send('Rating already given on this product!');
@@ -94,12 +93,7 @@ export const editUserReviewController = tryCatchUtility(async (req, res) => {
         }
     }
 
-    // console.log('updates',updates);
-    delete updates.product_id;
-    // console.log('updates',updates);
-
-    // if(files !== undefined) {
-    if(files) {
+    if(typeof files !== undefined) {
         updates.review_images = [];
         files.review_images.forEach(img => updates.review_images.push(img.path.replace(/\\/g,'/')));
     }

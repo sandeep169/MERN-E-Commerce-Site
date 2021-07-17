@@ -6,8 +6,8 @@ import { validateDataUtility } from '../utils/validation/data.js';
 const router = express.Router();
 
 router.get('/',getProfileApi);
-router.put('/updateprofile/:uid',validateDataUtility,updateProfileApi);
-router.delete('/:uid',deleteProfileApi);
+router.put('/updateprofile',validateDataUtility,updateProfileApi);
+router.delete('/deleteprofile',deleteProfileApi);
 
 export default router;
 

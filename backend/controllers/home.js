@@ -1,12 +1,12 @@
-import userModel from '../models/user.js';
-import productModel from '../models/product.js';
+// import userModel from '../models/user.js';
+// import productModel from '../models/product.js';
 
 // import { tryCatchUtility } from '../utils/errHandling/tryCatch.js';
 // import { generateErrUtility } from '../utils/errHandling/generateErr.js';
 
 // export const validateUserController = tryCatchUtility(async (req, res) => {
 //     const user = req.user;          // when performing other opts
-//     if(typeof user !== 'undefined') 
+//     if(typeof user !== 'undefined')
 //         return user.group === 'admin' ? getAdminHomeController(req, res) : getUserHomeController(req, res);
 
 //     const role = req.userRole;      // when loging in
@@ -17,7 +17,7 @@ import productModel from '../models/product.js';
 // });
 
 
-export const getAdminHomeController = async (req, res) => {
+export const getAdminHomeController = (req, res) => {
     // console.log(req);
     const role = req.user ? req.user.group : req.userRole;
     // res.send('yoo..its admin!\nrole',role);
@@ -26,14 +26,14 @@ export const getAdminHomeController = async (req, res) => {
 
 };
 
-export const getUserHomeController = async (req, res) => {
+export const getUserHomeController = (req, res) => {
     const role = req.user ? req.user.group : req.userRole;
     console.log('3 ->',role);
     res.send(`yoo..its user!\nrole: ${role}`);
 
 };
 
-export const getGuestHomeController = async (req, res) => {
+export const getGuestHomeController = (req, res) => {
     const role = req.userRole;
 
     console.log('4 ->',role);

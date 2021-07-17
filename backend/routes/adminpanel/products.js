@@ -16,7 +16,7 @@ router.get('/',getProductsApi);
 // router.post('/addproduct',upload.array('product_images',5),validateDataUtility,addProductApi);
 router.post('/addproduct',uploadConfig.fields(uploadFields),validateDataUtility,addProductApi);
 router.put('/updateproduct/:pid',uploadConfig.fields(uploadFields),validateDataUtility,updateProductApi);
-router.delete('/:pid',deleteProductsApi);
+router.delete('/deleteproducts',deleteProductsApi);
 
 export default router;
 

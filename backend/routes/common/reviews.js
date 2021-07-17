@@ -1,14 +1,17 @@
 import express from 'express';
 
-import { getProductReviewsApi, addReviewToProductApi, editUserReviewApi, deleteUserReviewApi } from '../../controllers/api.js';
+import { addReviewToProductApi, editUserReviewApi, deleteUserReviewApi } from '../../controllers/api.js';
 import { validateDataUtility } from '../../utils/validation/data.js';
+import { uploadConfig } from '../../utils/imageUploading.js';
 
 const router = express.Router();
 
-router.get('/:pid',getProductReviewsApi);
-router.post('/:pid',validateDataUtility,addReviewToProductApi);
-router.put('/editreview/:rid',validateDataUtility,editUserReviewApi);   // edit my review
-router.delete('/:rid',deleteUserReviewApi);   // delete my review
+const uploadFields = [ { name: 'review_images', maxCount: 5 } ];
+
+// router.get('/:pid',getProductReviewsApi); -> in /public
+router.post('/addreview/:pid',uploadConfig.fields(uploadFields),validateDataUtility,addReviewToProductApi);
+router.put('/editreview/:rid',uploadConfig.fields(uploadFields),validateDataUtility,editUserReviewApi);   // edit my review
+router.delete('/deletereview/:rid',deleteUserReviewApi);   // delete my review
 
 export default router;
 

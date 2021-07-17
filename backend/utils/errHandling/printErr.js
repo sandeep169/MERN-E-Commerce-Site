@@ -17,18 +17,19 @@ export const printErrUtility = (err, req, res, next) => {
         // if(!err.isOperational)       // we may leak some sensitive info in err msg on production level if 'isOperational' is false
         //     errFormat.message = 'something went wrong';    // so changing err msg
         // else errFormat.message = err.message;   //  if 'isOperational' is true
-        errFormat.message = err.isOperational ? err.message : 'something went wrong';
-        res.status(errFormat.statusCode).json(errFormat);     // err sent to client
+        errFormat.message = err.isOperational ? err.message : 'Something went wrong!';
+        res.status(errFormat.statusCode).json({ error: errFormat });     // err sent to client
     }
 
     errFormat.message = err.message;
     errFormat.stack = err.stack;
     errFormat.workingEnv = workingEnv;
-    
+
     // console.log("->",errFormat);
     if(workingEnv === 'dev')
-        res.status(errFormat.statusCode).json(JSON.stringify(errFormat, null, 4));     // err sent to client
-    
+        res.status(errFormat.statusCode).json({ error: JSON.stringify(errFormat, null, 4) });     // err sent to client
+        // res.status(errFormat.statusCode).json({ error: errFormat });     // err sent to client
+
         // res.status(errFormat.statusCode).json()
         // .then(() => {
         //     console.log(errFormat);

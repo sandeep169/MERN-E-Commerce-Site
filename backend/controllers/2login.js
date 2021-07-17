@@ -6,8 +6,6 @@ import userModel from '../models/user.js';
 import { tryCatchUtility } from '../utils/errHandling/tryCatch.js';
 import { generateErrUtility } from '../utils/errHandling/generateErr.js';
 
-export let key;
-// let key;     // also working fine
 export const verifyLoggerController = tryCatchUtility(async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -39,18 +37,12 @@ export const verifyLoggerController = tryCatchUtility(async (req, res, next) => 
     // }
     if(!isPassValid) throw new generateErrUtility('Invalid credentials!',401);     // handle isPassValid value(LHS)
 
-    // console.log(process.env.SERVER_SECRET,typeof process.env.SERVER_SECRET);
-    // console.log(Math.random() * 73478632587412567,typeof (Math.random() * 73478632587412567));
-    // console.log(process.env.SERVER_SECRET + Math.random() * 73478632587412567,typeof (process.env.SERVER_SECRET + Math.random() * 73478632587412567));
-    key = process.env.SERVER_SECRET + (Math.random() * 73478632587412567);
-    // console.log('\nlogin-key',key,'\n');
     // let token;
     // try {
         const token = jwt.sign(     // data will be sent to end user in token, so it must hv specific required info only
             { userid: response._id, username: response.username, group: response.ownership },
             // { uid: userData._id },
-            // process.env.SERVER_SECRET,
-            key,
+            process.env.SERVER_SECRET,
             { expiresIn: "12h" }
         );
     // } catch (error) {
@@ -58,7 +50,6 @@ export const verifyLoggerController = tryCatchUtility(async (req, res, next) => 
     // }
     if(!token) throw new generateErrUtility('Something went wrong!\nPlease try again later...',500);     // handle token value(LHS)
 
-    // req.key = key;
     req.userRole = response.ownership;
     // res.status(200).json({ msg: 'login successfully', token: token });      // also decide here where to go - user or admin
     console.log(`{ token: ${token} }`);
@@ -66,5 +57,4 @@ export const verifyLoggerController = tryCatchUtility(async (req, res, next) => 
 
     // res.send('yoo..testing!');
 });
-// export { key };
 

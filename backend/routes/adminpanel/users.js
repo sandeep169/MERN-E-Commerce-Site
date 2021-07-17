@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/',getUsersApi);
 router.post('/adduser',validateDataUtility,addUserApi);
 router.put('/updateuser/:uid',validateDataUtility,updateUserApi);
-router.delete('/:uid',deleteUsersApi);
+router.delete('/deleteusers',deleteUsersApi);
 
 export default router;
 

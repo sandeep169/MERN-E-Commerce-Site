@@ -2,12 +2,12 @@ import express from 'express';
 
 // import { getUserHomeApi, getUserProfileApi, updateUserProfileApi, deleteUserProfileApi } from '../../controllers/api.js';
 // {, ordersApi, returnsApi}
+// import ratingsRoute from './ratings.js';
+// import otherRoute from './other.js';
 import cartRoute from './cart.js';
+import ordersRoute from './orders.js';
+import returnsRoute from './returns.js';
 import reviewsRoute from './reviews.js';
-import ratingsRoute from './ratings.js';
-import otherRoute from './other.js';
-// import ordersRoute from './orders';
-// import returnsRoute from './returns';
 // import profileRoute from '../profile.js';
 
 const router = express.Router();
@@ -28,14 +28,20 @@ const router = express.Router();
 // Operations on my cart
 router.use('/cart',cartRoute);
 
+// My orders
+router.use('/orders',ordersRoute);
+
+// My returns
+router.use ('/returns',returnsRoute);
+
 // Operations on my reviews
 router.use('/reviews',reviewsRoute);
 
 // Operations on my ratings
-router.use('/ratings',ratingsRoute);
+// router.use('/ratings',ratingsRoute);
 
 // some other fns
-router.use('/other',otherRoute);
+// router.use('/other',otherRoute);
 
 export default router;
 
