@@ -8,7 +8,7 @@ const productCustomizationSchema = mongoose.Schema({
     color: { type: String, required: true },
 
     order_status: String      // successful(after 2 months of delivery date), returned, canceled, delivered, pending,
-    // totalPrice: { type: Number, required: true },
+
 }, { timestamps: true } );
 
 productCustomizationSchema.index({ id: 1, quantity: 1, size: 1, color: 1 }, { unique: true });

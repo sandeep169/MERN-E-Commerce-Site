@@ -18,8 +18,6 @@ import { getCartProductsController, addProductToCartController, editCartProductC
 import { getOrdersController, placeOrderController } from './common/orders.js';
 import { getReturnsController, returnProductController } from './common/returns.js';
 import { getProductReviewsController, addReviewToProductController, editUserReviewController, deleteUserReviewController } from './common/reviews.js';
-// import { getProductRatingController, addRatingToProductController, editUserRatingController, deleteUserRatingController } from './common/ratings.js';
-// import { getProductController, addProductToCartController, getOrdersController, getReturnsController } from './common/other.js';
 
 
 // public fns
@@ -79,18 +77,6 @@ export const getProductReviewsApi = getProductReviewsController;
 export const addReviewToProductApi = addReviewToProductController;
 export const editUserReviewApi = editUserReviewController;
 export const deleteUserReviewApi = deleteUserReviewController;
-
-/*// ratings
-export const getProductRatingApi = getProductRatingController;
-export const addRatingToProductApi = addRatingToProductController;
-export const editUserRatingApi = editUserRatingController;
-export const deleteUserRatingApi = deleteUserRatingController;
-
-// other
-export const getProductApi = getProductController;
-export const addProductToCartApi = addProductToCartController;
-export const getOrdersApi = getOrdersController;
-export const getReturnsApi = getReturnsController;*/
 
 
 // public

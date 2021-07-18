@@ -9,16 +9,8 @@ const router = express.Router();
 // admin-panel
 router.get('/',getAdminPanelApi);
 
-// Website home for 'admin'
-// router.get(['/', '/home'],getAdminHomeApi);
-// router.get('/',getAdminHomeApi);
-
 // Operations on all users
 router.use('/users',usersRoute);
-// router.get('/users',getUsersApi);
-// router.post('/adduser',addUserApi);
-// router.put('/updateuser/:uid',updateUserApi);
-// router.delete('/:uid',deleteUsersApi);
 
 // Operations on all products
 router.use('/products',productsRoute);

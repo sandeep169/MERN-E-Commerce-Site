@@ -6,8 +6,6 @@ const router = express.Router();
 
 router
     // view any particular product as guest
-    // router.get('/:pcode',getProductApi);
-    // router.get(/^\/[a-z0-9_-]{6}$/,getProductApi);
     .get('/:pcode([a-z0-9_-]{6,15})',getProductApi)
 
     // get product consolidated rating

@@ -8,7 +8,6 @@ const router = express.Router();
 
 const uploadFields = [ { name: 'review_images', maxCount: 5 } ];
 
-// router.get('/:pid',getProductReviewsApi); -> in /public
 router.post('/addreview/:pid',uploadConfig.fields(uploadFields),validateDataUtility,addReviewToProductApi);
 router.put('/editreview/:rid',uploadConfig.fields(uploadFields),validateDataUtility,editUserReviewApi);   // edit my review
 router.delete('/deletereview/:rid',deleteUserReviewApi);   // delete my review
