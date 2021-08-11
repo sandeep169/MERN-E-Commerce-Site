@@ -1,0 +1,79 @@
+annotations :-
+    uid = user_id
+    pid = product_id
+    cpid = cart_product_id
+    oid = order_id
+    rnid = return_id
+    pcid = productCustomization_id
+    rid = review_id
+    pcode = product_code saved in db 'product' as field 'code'
+
+
+POST:   http://localhost:5000/singup
+POST:   http://localhost:5000/login
+GET:    http://localhost:5000/             -> home
+GET:    http://localhost:5000/home         -> home
+
+
+adminpanel (access to admin only and pass token with every request)
+    GET: http://localhost:5000/adminpanel   -> adminpanel home
+
+    users
+        GET:    http://localhost:5000/adminpanel/users
+        POST:   http://localhost:5000/adminpanel/users/adduser
+        PUT:    http://localhost:5000/adminpanel/users/updateuser/:uid
+        DELETE: http://localhost:5000/adminpanel/users/deleteusers
+                -> send array of ids of users to delete in body with api
+
+    products
+        GET:    http://localhost:5000/adminpanel/products
+        POST:   http://localhost:5000/adminpanel/products/addproduct
+                -> can add images upto 5 per product in 'Content-Type: multipart/form-data', saves name of images in db and save images on local storage, if no images then we can use 'Content-Type: application/json'
+        PUT:    http://localhost:5000/adminpanel/products/updateproduct/:pid
+                -> can edit images with 'Content-Type: multipart/form-data'
+        DELETE: http://localhost:5000/adminpanel/products/deleteproducts
+                -> send array of ids of products to delete in body with api
+
+
+profile (access to login user and pass token with every request)
+    GET:    http://localhost:5000/profile
+    PUT:    http://localhost:5000/profile/updateprofile
+    DELETE: http://localhost:5000/profile/deleteprofile
+
+
+common (access to any login user and pass token with every request)
+    cart
+        GET:    http://localhost:5000/common/cart
+        POST:   http://localhost:5000/common/cart/addproducttocart/:pid
+        PUT:    http://localhost:5000/common/cart/editcartproduct/:pcid
+        DELETE: http://localhost:5000/common/cart/deletecartproduct/:pcid
+
+    orders
+        GET:    http://localhost:5000/common/orders
+        POST:   http://localhost:5000/common/orders/placeorder
+
+    returns
+        GET:    http://localhost:5000/common/returns
+        POST:   http://localhost:5000/common/returns/returnproduct/:pcid
+
+    reviews
+        POST:   http://localhost:5000/common/reviews/addreview/:pid
+                -> rating allowed only once per user per product bcz otherwise it'll affect product avg rating
+                -> comments allowed n times per user per product
+                -> can add images upto 5 per review in 'Content-Type: multipart/form-data', it saves name of images in db and save images on local storage, if no images then we can use 'Content-Type: application/json'
+        PUT:    http://localhost:5000/common/reviews/editreview/:rid
+                -> send product_id also, with review updates in body who's review user is editing
+                -> can edit images with 'Content-Type: multipart/form-data'
+        DELETE: http://localhost:5000/common/reviews/deletereview/:rid
+
+
+public (acces to public, no need of any token)
+    GET: http://localhost:5000/:pcode
+    GET: http://localhost:5000/productrating/:pid
+    GET: http://localhost:5000/productreviews/:pid
+    GET: http://localhost:5000/images/products/:image_name(saved in backend local storage)
+    GET: http://localhost:5000/images/reviews/:image_name(saved in backend local storage)
+
+
+
+

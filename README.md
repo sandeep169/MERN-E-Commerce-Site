@@ -1,1 +1,1 @@
-E-Commerce App using MERN stack
+**_E-Commerce App using MERN stack_**

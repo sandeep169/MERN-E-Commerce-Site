@@ -1,0 +1,199 @@
+@host = http://localhost:5000
+POST {{host}}/signup
+Content-Type: application/json
+
+{
+    "username": "fooi",
+    "email": "fooi@1.com",
+    "password": "12345678"
+}
+###
+POST {{host}}/login
+Content-Type: application/json
+
+{
+    "email": "manoj@1.com",
+    "password": "12345789"
+}
+###
+
+
+@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MGM4OWM3YWM5YTZjMjRlNjBlZmI0YmQiLCJ1c2VybmFtZSI6Im1hbm9qIiwiZ3JvdXAiOiJhZG1pbiIsImlhdCI6MTYyNjU1MDc2NywiZXhwIjoxNjI2NTkzOTY3fQ.mwFvgMJ6OuWTKVU8EzffQ0fjAg7MXVqhjP-d8ZD7iz4
+GET {{host}}/home
+# GET {{host}}
+Authorization: Bearer {{token}}
+###
+
+
+# Admin Panel ->
+# Users
+@ap-users = adminpanel/users
+# @id = 60ddc1acf7a10317a810dd35
+GET {{host}}/{{ap-users}}
+Authorization: Bearer {{token}}
+###
+POST {{host}}/{{ap-users}}/adduser
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "username": "ankitTopa",
+    "email": "ankitTopa@3.com",
+    "password": "12345678",
+    "age": "01"
+}
+###
+PUT {{host}}/{{ap-users}}/updateuser/60ec4b74af71f450d0f8a423
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "email": "ankittopa@topaonfire.com"
+}
+###
+DELETE {{host}}/{{ap-users}}/deleteusers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "ids": ["60ec4b25af71f450d0f8a41f", "60ec4b4aaf71f450d0f8a421","60ec4b62af71f450d0f8a422"] }
+###
+
+# Products
+@ap-products = adminpanel/products
+GET {{host}}/{{ap-products}}
+Authorization: Bearer {{token}}
+###
+POST {{host}}/{{ap-products}}/addproduct
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "product_name": "pant",
+    "code": "asics-3",
+    "price": 123,
+    "product_sizes": "S,M,L",
+    "product_colors": "red,green,blue",
+    "product_gender": "F"
+}
+###
+PUT {{host}}/{{ap-products}}/updateproduct/60ec6536d97acc43cc012c98
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "product_sizes": "X,XL"
+}
+###
+DELETE {{host}}/{{ap-products}}/deleteproducts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "ids": ["60ec66828d24773e0c6434b2", "60ec657b1367e50700f682a7","60ec6536d97acc43cc012c98","60ec5ee5e6c1bf42e4bc1480"] }
+###
+
+
+# Profile ->
+GET {{host}}/profile
+Authorization: Bearer {{token}}
+###
+PUT {{host}}/profile/updateprofile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "username": "sandeep"
+}
+###
+DELETE {{host}}/profile/deleteprofile
+Authorization: Bearer {{token}}
+###
+
+
+# Cart ->
+@cart = common/cart
+GET {{host}}/{{cart}}
+Authorization: Bearer {{token}}
+###
+POST {{host}}/{{cart}}/addproducttocart/60d64a21537bdc1f783f1010
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "quantity": 1,
+    "size": "S",
+    "color": "black"
+}
+###
+PUT {{host}}/{{cart}}/editcartproduct/60eeda5b072f4d40d0d34382
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "color": "blue"
+}
+###
+DELETE {{host}}/{{cart}}/deletecartproduct/60eeda5b072f4d40d0d34382
+Authorization: Bearer {{token}}
+###
+
+
+# Orders ->
+@orders = common/orders
+GET {{host}}/{{orders}}
+Authorization: Bearer {{token}}
+###
+POST {{host}}/{{orders}}/placeorder
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+
+}
+###
+
+
+# Returns ->
+@returns = common/returns
+GET {{host}}/{{returns}}
+Authorization: Bearer {{token}}
+###
+POST {{host}}/{{returns}}/returnproduct/60e96bbd197f5b1c5c68462c
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+    "reason": "unfit"
+}
+###
+
+
+# Reviews ->
+@reviews = common/reviews
+# GET {{host}}/{{reviews}}/60d64a21537bdc1f783f1010  ->   moved to public
+# Authorization: Bearer {{token}}
+###
+POST {{host}}/{{reviews}}/addreview/60e96bcf197f5b1c5c68462e
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "cmt4",
+    "comment": "comment4",
+    "rating": 1
+}
+###
+PUT {{host}}/{{reviews}}/editreview/60f21247c4a6b14a60f1cec9
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "rating": 3,
+    "product_id": "60e96bcf197f5b1c5c68462e"
+}
+###
+DELETE {{host}}/{{reviews}}/deletereview/60f21247c4a6b14a60f1cec9
+Authorization: Bearer {{token}}
+###
+
+
+# Public ->

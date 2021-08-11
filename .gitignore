@@ -23,5 +23,30 @@ yarn-debug.log*
 yarn-error.log*
 
 
+.vscode
 .history
 .env
+*.png
+*.jpg
+*.txt
+error_logs
+
+
+# it will exclude everything inside dir 'images' from ignoring (simply, these files wont be ignored)
+# for all 'images' dirs --------- --------- ---------
+# !*/images/*
+# !*/images/*/*
+# !*/images/**  # combination of above 2
+# for specific 'images' dir --------- --------- ---------
+# !backend/images/*
+# !backend/images/*/*
+# !backend/images/*/*.jpg
+# combination of above 3
+!backend/images/**
+
+# !backend/1api's\ urls.txt
+# !backend/1api's?urls.txt
+# !"backend/api's urls.txt"
+# !backend/api's\surls.txt
+# !backend/some\ condns.txt
+
