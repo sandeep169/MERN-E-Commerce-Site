@@ -12,13 +12,13 @@ POST {{host}}/login
 Content-Type: application/json
 
 {
-    "email": "manoj@1.com",
-    "password": "12345789"
+    "email": "sandeep@1.com",
+    "password": "12345678"
 }
 ###
 
 
-@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MGM4OWM3YWM5YTZjMjRlNjBlZmI0YmQiLCJ1c2VybmFtZSI6Im1hbm9qIiwiZ3JvdXAiOiJhZG1pbiIsImlhdCI6MTYyNjU1MDc2NywiZXhwIjoxNjI2NTkzOTY3fQ.mwFvgMJ6OuWTKVU8EzffQ0fjAg7MXVqhjP-d8ZD7iz4
+@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MGRkYzFhY2Y3YTEwMzE3YTgxMGRkMzUiLCJ1c2VybmFtZSI6InNhbmRlZXAiLCJncm91cCI6ImFkbWluIiwiaWF0IjoxNjI4NzY0NDI3LCJleHAiOjE2Mjg4MDc2Mjd9.nnbWChQNe03zXs_WC1YWjMbwzF_948kRvab-DhB25Z8
 GET {{host}}/home
 # GET {{host}}
 Authorization: Bearer {{token}}
