@@ -1,0 +1,45 @@
+import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstants"
+import Axios from 'axios';
+// import axios from "axios";
+export const listProducts = () => async (dispatch) => {
+    // console.log("LIST PRODUCTS");
+    dispatch({
+        type: PRODUCT_LIST_REQUEST
+    });
+    try {
+        // console.log("inside try");
+        const {data} = await Axios.get("/api/products/");
+        // const {data} = await Axios.get('https://jsonplaceholder.typicode.com/posts');
+        // const data =fetch("http://localhost:5000/api/products")
+        // console.log("after try");
+        console.log(data);
+        
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+        //payload should contain from backend
+    }
+    catch (error) {
+        console.log(error.message) ;
+        dispatch({ type: PRODUCT_LIST_FAIL });
+    };
+
+};
+
+export const detailsProduct = (productId) => async (dispatch) => {
+    dispatch(
+        { type: PRODUCT_DETAILS_REQUEST, payload: productId }
+    );
+    try {
+        const {data} = await Axios.get(`/api/products/${productId}`);
+        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
+    }
+    catch(error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+
+};

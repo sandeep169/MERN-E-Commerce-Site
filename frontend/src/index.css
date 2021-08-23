@@ -27,7 +27,9 @@ body{
 }
 header{
   grid-area:header;
-  background-color: #203040;
+  /* background-color: #203040; */
+  background-color: white;
+  /* color: black; */
 }
 main{
   grid-area:main;
@@ -55,15 +57,66 @@ a{
 a:hover{
   color : #ff8000;
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+li{
+  margin-top: 1rem;
+}
+input,
+select,
+textarea,
+button{
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border : 0.1rem #a4a4a4 solid;
+  font-size: 1.6rem;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border-color: #f8f8f8;
+  cursor: pointer;
+}
+input:hover,
+select:hover,
+textarea:hover,
+button:hover{
+  border : 0.1rem #404040 solid;
+}
+button.primary{
+  background-color: #f0c040;
+}
+button.block{
+  width: 100%;
+}
+
+
 /* Hearder */
 header a{
-color : #fff;
+/* color : #fff; */
+color : black;
+
 padding : 1rem;
 }
 a.brand{
-  color : #ffffff;
+  /* color : #ffffff; */
+color: black;
   font-size:3rem;
   font-weight: bold;
+}
+.badge{
+  background-color: #f02020;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.2rem;
 }
 .row{
   display: flex;
@@ -71,18 +124,38 @@ a.brand{
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  color: black
 }
 .row.center{
   justify-content: center;
+}
+.row.top {
+  align-items: flex-start;
+}
+.col-1{
+  flex : 1 1 25rem;
+}
+.col-2{
+  flex : 2 1 50rem;
+}
+.min-30 {
+  min-width: 30rem;
 }
 /* for image  */
 img{
    border-radius: 0.5rem;
 }
+img.small {
+  max-width: 5rem;
+  width: 100%;
+}
 img.medium{
    max-width: 26rem;
    width: 100%;
-   height: 280px;
+   /* height: 280px; */
+}
+img.large{
+  width: 100%;
 }
 .card{
    border : 0.1rem #c0c0c0 solid;
@@ -107,3 +180,27 @@ margin-bottom:0.5rem ;
   color :#f0c040 ;
   margin: 0.1rem;
 }
+.rating span:last-child{
+  color: #404040;
+}
+/* alert */
+.success{
+  color: #20a020;;
+}
+.danger{
+  color: #a02020;;
+}
+.alert{
+  padding: 1rem;
+  border : 0.1rem solid transparent;
+  border-radius : 0.5rem;
+}
+.alert-info{
+  color:#2020a0;
+  background-color: #e0e0e0;
+}
+.alert-danger{
+  color:#a02020;
+  background-color: #ffe0e0e0;
+}
+
